@@ -14,6 +14,8 @@ Todas as etapas de pré-processamento de texto, análise exploratória, treiname
 - **Arquiteturas testadas**: LSTM simples, LSTM bidirecional, CNN e modelo híbrido
 - **Técnicas aplicadas**: Tokenização, embedding de palavras, regularização e otimização de hiperparâmetros
 
+
+
 <div align="center">
 
 ## 💻 Data Tools & Technologies
@@ -28,6 +30,7 @@ Todas as etapas de pré-processamento de texto, análise exploratória, treiname
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/keras/keras-original.svg" width="30" height="30" />
 
 </div>
+
 
 
 
