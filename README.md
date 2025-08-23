@@ -15,12 +15,6 @@ Todas as etapas de pré-processamento de texto, análise exploratória, treiname
 - **Melhor resultado**: 82.4% de acurácia com LSTM Bidirecional otimizado
 - **Técnicas aplicadas**: Tokenização, embedding de palavras, regularização e otimização de hiperparâmetros
 
-## Tecnologias Utilizadas
-- **Deep Learning**: TensorFlow, Keras
-- **NLP**: NLTK, preprocessamento de texto
-- **Análise**: pandas, numpy, scikit-learn
-- **Visualização**: matplotlib, seaborn, plotly
-
 <div align="center">
 
 ## 💻 Data Tools & Technologies
@@ -35,5 +29,6 @@ Todas as etapas de pré-processamento de texto, análise exploratória, treiname
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/keras/keras-original.svg" width="30" height="30" />
 
 </div>
+
 
 
