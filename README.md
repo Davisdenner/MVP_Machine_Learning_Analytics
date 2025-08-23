@@ -2,9 +2,7 @@
   <img src="https://reari.uff.br/wp-content/uploads/sites/171/2023/09/pucrio.png" width="100" height="100"/>
 </p>
 
-<p align="center">
-# Classificação de Tweets de Desastre com Deep Learning
-</p>
+<h1 align="center">Classificação de Tweets de Desastre com Deep Learning</h1>
 
 Este projeto consiste em um notebook desenvolvido no **Google Colab** que tem como objetivo classificar tweets relacionados a desastres naturais utilizando técnicas de **Deep Learning** e Processamento de Linguagem Natural (NLP). O conjunto de dados utilizado, [Natural Language Processing with Disaster Tweets](https://www.kaggle.com/c/nlp-getting-started), foi obtido no **Kaggle** e contém milhares de tweets rotulados, permitindo treinar modelos neurais para identificar automaticamente conteúdo relacionado a emergências e desastres.
 
@@ -32,6 +30,7 @@ Todas as etapas de pré-processamento de texto, análise exploratória, treiname
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/keras/keras-original.svg" width="30" height="30" />
 
 </div>
+
 
 
 
