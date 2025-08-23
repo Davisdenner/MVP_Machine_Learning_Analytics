@@ -12,7 +12,6 @@ Todas as etapas de pré-processamento de texto, análise exploratória, treiname
 - **Dataset**: 7.613 tweets de treino e 3.263 de teste
 - **Problema**: Classificação binária (desastre vs não-desastre)
 - **Arquiteturas testadas**: LSTM simples, LSTM bidirecional, CNN e modelo híbrido
-- **Melhor resultado**: 82.4% de acurácia com LSTM Bidirecional otimizado
 - **Técnicas aplicadas**: Tokenização, embedding de palavras, regularização e otimização de hiperparâmetros
 
 <div align="center">
@@ -29,6 +28,7 @@ Todas as etapas de pré-processamento de texto, análise exploratória, treiname
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/keras/keras-original.svg" width="30" height="30" />
 
 </div>
+
 
 
 
