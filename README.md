@@ -1,50 +1,18 @@
-# 🚨 Classificação de Tweets de Desastre com Deep Learning
+# Classificação de Tweets de Desastre com Deep Learning
+Este projeto consiste em um notebook desenvolvido que tem como objetivo classificar tweets relacionados a desastres naturais utilizando técnicas de Deep Learning e Processamento de Linguagem Natural (NLP). O conjunto de dados utilizado neste projeto contém milhares de tweets rotulados, permitindo treinar modelos neurais para identificar automaticamente conteúdo relacionado a emergências e desastres.
+Todas as etapas de pré-processamento de texto, análise exploratória, treinamento de múltiplas arquiteturas de redes neurais e avaliação dos resultados foram conduzidas utilizando bibliotecas como TensorFlow/Keras, NLTK e scikit-learn.
 
-Este projeto consiste em um notebook desenvolvido que tem como objetivo classificar tweets relacionados a desastres naturais utilizando técnicas avançadas de Deep Learning e Processamento de Linguagem Natural (NLP). O conjunto de dados utilizado contém milhares de tweets rotulados, permitindo treinar modelos neurais para identificar automaticamente conteúdo relacionado a emergências e desastres.
+O projeto demonstra a aplicação prática de redes neurais para classificação de texto em contextos de emergência, com potencial uso em sistemas de monitoramento de redes sociais para detecção precoce de desastres.
 
-## 📊 Sobre o Dataset
+## Principais Características
+- **Dataset**: 7.613 tweets de treino e 3.263 de teste
+- **Problema**: Classificação binária (desastre vs não-desastre)
+- **Arquiteturas testadas**: LSTM simples, LSTM bidirecional, CNN e modelo híbrido
+- **Melhor resultado**: 82.4% de acurácia com LSTM Bidirecional otimizado
+- **Técnicas aplicadas**: Tokenização, embedding de palavras, regularização e otimização de hiperparâmetros
 
-O conjunto de dados é composto por:
-- **Conjunto de treino**: 7.613 tweets rotulados
-- **Conjunto de teste**: 3.263 tweets para predição
-- **Características**: Textos em linguagem natural (inglês)
-- **Classes**: Binária (0 = Não-desastre, 1 = Desastre)
-- **Distribuição**: Aproximadamente 43% tweets de desastre, 57% não-desastre
-
-## 🔧 Tecnologias Utilizadas
-
-### Deep Learning & ML
-- **TensorFlow/Keras**: Framework principal para redes neurais
-- **scikit-learn**: Métricas e preprocessamento
-- **NLTK**: Processamento de linguagem natural
-
-### Processamento e Análise
-- **pandas/numpy**: Manipulação de dados
-- **matplotlib/seaborn**: Visualizações
-- **plotly**: Gráficos interativos
-- **WordCloud**: Análise visual de texto
-
-### Arquiteturas Testadas
-- LSTM Simples
-- LSTM Bidirecional
-- CNN para texto
-- Modelo Híbrido (CNN + LSTM)
-
-## 🚀 Metodologia
-
-### 1. **Pré-processamento de Texto**
-- Limpeza de URLs, menções (@) e hashtags (#)
-- Conversão para minúsculas
-- Remoção de caracteres especiais e stopwords
-- Tokenização e lematização
-- Padding de sequências para comprimento uniforme
-
-### 2. **Engenharia de Features**
-- Tokenização com vocabulário de 20.000 palavras
-- Sequências de comprimento máximo 100 tokens
-- Embedding de palavras trainável
-- Cobertura de 85%+ dos textos originais
-
-### 3. **Arquiteturas de Deep Learning**
-
-#### LSTM Bidirecional (Melhor Performance)
+## Tecnologias Utilizadas
+- **Deep Learning**: TensorFlow, Keras
+- **NLP**: NLTK, preprocessamento de texto
+- **Análise**: pandas, numpy, scikit-learn
+- **Visualização**: matplotlib, seaborn, plotly
