@@ -9,10 +9,10 @@ Este projeto consiste em um notebook desenvolvido no **Google Colab** que tem co
 Todas as etapas de pré-processamento de texto, análise exploratória, treinamento de múltiplas arquiteturas de redes neurais e avaliação dos resultados foram conduzidas utilizando bibliotecas como TensorFlow/Keras, NLTK e scikit-learn. O projeto demonstra a aplicação prática de redes neurais para classificação de texto em contextos de emergência, com potencial uso em sistemas de monitoramento de redes sociais para detecção precoce de desastres.
 
 ## Principais Características
-- **Dataset**: 7.613 tweets de treino e 3.263 de teste
-- **Problema**: Classificação binária (desastre vs não-desastre)
-- **Arquiteturas testadas**: LSTM simples, LSTM bidirecional, CNN e modelo híbrido
-- **Técnicas aplicadas**: Tokenização, embedding de palavras, regularização e otimização de hiperparâmetros
+- **Dataset**: 7.613 tweets de treino e 3.263 de teste;
+- **Problema**: Classificação binária (desastre vs não-desastre);
+- **Arquiteturas testadas**: LSTM simples e LSTM bidirecional;
+- **Técnicas aplicadas**: Tokenização, embedding de palavras, regularização e otimização de hiperparâmetros.
 
 
 
@@ -30,6 +30,7 @@ Todas as etapas de pré-processamento de texto, análise exploratória, treiname
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/keras/keras-original.svg" width="30" height="30" />
 
 </div>
+
 
 
 
