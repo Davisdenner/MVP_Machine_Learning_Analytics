@@ -1,4 +1,7 @@
-tensorflow-cpu==2.12.0
+pip==25.3
+setuptools>=65.0.0
+wheel
+tensorflow==2.20.0
 nltk>=3.8.1
 numpy>=1.23.5
 streamlit>=1.22.0
