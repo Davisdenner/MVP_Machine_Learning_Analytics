@@ -1,5 +1,5 @@
 def main():
-    print("Hello from mvp-machine-learning-analytics!")
+    print("Hello from mvp-machine-learning-analytics! ")
 
 
 if __name__ == "__main__":
