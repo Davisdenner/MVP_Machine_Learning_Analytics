@@ -1,3 +1,4 @@
+
 import re
 import nltk
 from nltk.corpus import stopwords
@@ -5,14 +6,20 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
 # Garantindo que os recursos NLTK necessários estejam disponíveis
-for resource in ["stopwords", "wordnet", "punkt"]:
-    try:
-        if resource == "punkt":
-            nltk.data.find(f"tokenizers/{resource}")
-        else:
-            nltk.data.find(f"corpora/{resource}")
-    except LookupError:
-        nltk.download(resource, quiet=True)
+# Baixando recursos de forma mais explícita, mesmo que já estejam presentes
+nltk.download('punkt', quiet=True)
+nltk.download('stopwords', quiet=True)
+nltk.download('wordnet', quiet=True)
+
+# A versão anterior que apenas verifica não é suficiente para o Streamlit Cloud
+# for resource in ["stopwords", "wordnet", "punkt"]:
+#     try:
+#         if resource == "punkt":
+#             nltk.data.find(f"tokenizers/{resource}")
+#         else:
+#             nltk.data.find(f"corpora/{resource}")
+#     except LookupError:
+#         nltk.download(resource, quiet=True)
 
 # Função para pré-processar o texto do tweet
 def preprocess_text(text):
