@@ -1,25 +1,21 @@
-
 import re
 import nltk
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+import string
 
-# Garantindo que os recursos NLTK necessários estejam disponíveis
-# Baixando recursos de forma mais explícita, mesmo que já estejam presentes
+# Baixando recursos de forma explícita
 nltk.download('punkt', quiet=True)
 nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 
-# A versão anterior que apenas verifica não é suficiente para o Streamlit Cloud
-# for resource in ["stopwords", "wordnet", "punkt"]:
-#     try:
-#         if resource == "punkt":
-#             nltk.data.find(f"tokenizers/{resource}")
-#         else:
-#             nltk.data.find(f"corpora/{resource}")
-#     except LookupError:
-#         nltk.download(resource, quiet=True)
+# Implementação alternativa para tokenização sem depender do punkt_tab
+def simple_tokenize(text):
+    # Remove pontuação e substitui por espaços
+    for punct in string.punctuation:
+        text = text.replace(punct, ' ')
+    # Divide por espaços e filtra tokens vazios
+    return [token.strip() for token in text.split() if token.strip()]
 
 # Função para pré-processar o texto do tweet
 def preprocess_text(text):
@@ -42,15 +38,23 @@ def preprocess_text(text):
     # Removendo espaços extras
     text = re.sub(r'\s+', ' ', text).strip()
 
-    # Tokenização
-    tokens = word_tokenize(text)
+    # Tokenização usando nosso tokenizador simples
+    tokens = simple_tokenize(text)
 
     # Removendo stopwords
-    stop_words = set(stopwords.words('english'))
-    tokens = [word for word in tokens if word not in stop_words and len(word) > 2]
+    try:
+        stop_words = set(stopwords.words('english'))
+        tokens = [word for word in tokens if word not in stop_words and len(word) > 2]
+    except:
+        # Fallback se as stopwords não estiverem disponíveis
+        tokens = [word for word in tokens if len(word) > 2]
 
     # Lematização
-    lemmatizer = WordNetLemmatizer()
-    tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    try:
+        lemmatizer = WordNetLemmatizer()
+        tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    except:
+        # Fallback se a lematização falhar
+        pass
 
     return ' '.join(tokens)
