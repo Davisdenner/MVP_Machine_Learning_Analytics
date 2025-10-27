@@ -2,10 +2,10 @@ pip==25.3
 setuptools>=65.0.0
 wheel
 tensorflow-cpu==2.20.0
-ml-dtypes>=0.5.1,<1.0.0
+ml-dtypes>=0.5.1,<0.6
 keras>=3.10.0
 protobuf==6.33.0
-numpy==1.26.4
+numpy>=2.1.0,<3
 tensorboard==2.20.0
 nltk>=3.8.1
 streamlit==1.50.0
