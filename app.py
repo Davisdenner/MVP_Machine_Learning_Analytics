@@ -34,6 +34,8 @@ st.markdown(
         background: #f6f8fa;
         padding: 25px 20px;
         border-right: 1px solid #dce3ea;
+        min-width: 305px;
+        max-width: 305px;
     }
     
     /* Títulos */
