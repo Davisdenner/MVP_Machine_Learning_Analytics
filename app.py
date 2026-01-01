@@ -8,8 +8,8 @@ from predict import predict_tweet
 st.set_page_config(
     page_title="Classificador de Tweets de Desastre Naturais",
     layout="wide",
+    initial_sidebar_state="collapsed"
 )
-
 # ===================== CSS PERSONALIZADO =====================
 st.markdown(
     """
