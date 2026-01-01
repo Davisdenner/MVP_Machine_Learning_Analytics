@@ -44,7 +44,7 @@ st.markdown(
     [data-testid="stSidebar"] h3 {
         font-weight: 700;
         color: #2c3e50; 
-        margin-top: 10px;
+        margin-top: -20px;
         margin-bottom: 12px;
     }
 
@@ -112,7 +112,7 @@ st.markdown(
         }
     
         .stTextArea textarea {
-            min-height: 120px;
+            min-height: 100px;
         }
     }
 
@@ -137,7 +137,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("Classificador de Tweets de Desastre Naturais")
+# st.title("Classificador de Tweets de Desastre Naturais")
+st.markdown(
+    """
+    <h1 style="margin-top:-50px;">
+        Classificador de Tweets de Desastre Naturais
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
 st.write("Digite um tweet para classificar se está relacionado a um desastre natural real ou não")
 st.caption("Dica: use o menu lateral para alterar configurações do modelo e ver detalhes do projeto.")
 
