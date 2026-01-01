@@ -61,36 +61,51 @@ st.markdown(
         margin: 22px 0;
     }
 
-    /* ===== MEDIA QUERIES ===== */
-    @media (max-width: 768px) {
-        .main .block-container {
-            padding: 1rem 0.5rem;
-        }
-
-        div.stButton > button {
-            padding: 1rem 1.5rem;
-            min-height: 48px;
-        }
-
-        .language-warning {
-            padding: 0.875rem 1rem;
-        }
-
-        .stTextArea textarea {
-            min-height: 100px;
-        }
+/* ===== MOBILE (celulares pequenos e médios) ===== */
+@media (max-width: 480px) {
+    .main .block-container {
+        padding: 0.75rem 0.5rem;
     }
 
-    @media (min-width: 769px) {
-        [data-testid="stSidebar"] {
-            min-width: 320px;
-            max-width: 320px;
-        }
-
-        .stTextArea textarea {
-            min-height: 120px;
-        }
+    div.stButton > button {
+        padding: 0.9rem 1.2rem;
+        min-height: 48px; /* acessibilidade */
+        font-size: 1rem;
     }
+
+    .stTextArea textarea {
+        min-height: 90px;
+        font-size: 0.95rem;
+    }
+}
+
+/* ===== MOBILE GRANDE / TABLET ===== */
+@media (min-width: 481px) and (max-width: 768px) {
+    .main .block-container {
+        padding: 1rem 0.75rem;
+    }
+
+    div.stButton > button {
+        padding: 1rem 1.4rem;
+        min-height: 48px;
+    }
+
+    .stTextArea textarea {
+        min-height: 110px;
+    }
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 769px) {
+    [data-testid="stSidebar"] {
+        min-width: 320px;
+        max-width: 320px;
+    }
+
+    .stTextArea textarea {
+        min-height: 120px;
+    }
+}
 
     /* Footer alinhado e mais bonito */
     .sidebar-footer {
