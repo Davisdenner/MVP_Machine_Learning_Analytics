@@ -266,7 +266,7 @@ if st.button("Classificar Tweet"):
         with col2:
             st.info(f"Probabilidade: {result['probability']:.2%}")
             st.progress(result['probability'])
-            st.caption('Previsões com probabilidade inferior a 50% são automaticamente classificadas como "Não Desastre".')
+            st.caption('Probabilidades inferiores a 50% são automaticamente classificadas como "Não Desastre".')
         with st.expander("Ver detalhes"):
             st.write("Texto após pré-processamento (remoção de ruído, normalização):")
             st.code(result['processed_text'])
