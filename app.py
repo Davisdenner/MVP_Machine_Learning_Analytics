@@ -116,6 +116,74 @@ st.markdown(
 st.title("Classificador de Tweets de Desastre Naturais")
 st.write("Digite um tweet para classificar se está relacionado a um desastre natural real ou não")
 
+with st.expander("O que este modelo faz e quando utilizar", expanded=False):
+    st.markdown("""
+    **O que o modelo faz**  
+    Esta aplicação utiliza um modelo de Deep Learning baseado em redes neurais
+    recorrentes (LSTM) para classificar tweets de acordo com a presença de
+    **eventos reais de desastre natural**, analisando o contexto do texto
+    e não apenas palavras-chave isoladas.
+
+    **Contexto de uso**  
+    O modelo pode ser utilizado para:
+    - Monitoramento de redes sociais em tempo real
+    - Apoio à detecção precoce de desastres naturais
+    - Análise de grandes volumes de dados textuais para fins de alerta e triagem
+
+    Este projeto tem foco **educacional e demonstrativo**, apresentando uma
+    solução prática de NLP.
+    """)
+
+
+with st.expander("O que significam as classificações?",expanded=False):
+    st.markdown("""
+    **Desastre**  
+    Tweets que descrevem a ocorrência real de eventos críticos,
+    como enchentes, terremotos, incêndios, deslizamentos ou outras
+    situações de emergência.
+
+    **Não Desastre**  
+    Tweets que utilizam termos associados a desastres de forma figurativa,
+    humorística ou fora de um contexto real de emergência.
+
+    O modelo foi treinado para identificar o **contexto da mensagem**,
+    e não apenas palavras-chave isoladas.
+    """)
+
+with st.expander("Desempenho do Modelo", expanded=False):
+    st.markdown("""
+    As métricas abaixo foram obtidas a partir de um **conjunto de validação separado**.
+
+    - **Acurácia**: 82%  
+    - **Precisão (Desastre)**: 79%  
+    - **Recall (Desastre)**: 85%  
+    - **F1-score**: 82%  
+
+    **Interpretação das métricas**  
+    - **Recall** indica a capacidade do modelo de identificar corretamente
+      tweets que representam **eventos reais de desastre**.
+    - **F1-score** representa o equilíbrio entre **Precisão** e **Recall**,
+      sendo especialmente relevante em cenários com classes desbalanceadas.
+
+    > O recall da classe **Desastre** foi priorizado para reduzir o risco de
+    falsos negativos em situações críticas.
+    """)
+
+with st.expander("Limitações do Modelo", expanded=False):
+    st.markdown("""
+    Embora o modelo apresente bom desempenho geral, algumas limitações devem ser consideradas:
+
+    - Tweets curtos, ambíguos ou com pouco contexto podem gerar classificações menos confiáveis.
+    - O modelo foi treinado com dados históricos e pode não generalizar bem para
+      gírias, abreviações ou eventos recentes.
+    - Ironia, sarcasmo e linguagem figurativa ainda representam desafios para o modelo.
+    - A probabilidade exibida representa **confiança estatística**, não uma certeza absoluta.
+
+    Este projeto tem caráter **educacional e demonstrativo**, mas reflete
+    desafios reais encontrados em aplicações de NLP em produção.
+    """)
+
+
 with st.sidebar:
     st.header("Configurações do Modelo")
     modelo_selecionado = st.sidebar.selectbox(
@@ -183,8 +251,9 @@ if st.button("Classificar Tweet"):
         with col2:
             st.info(f"Probabilidade: {result['probability']:.2%}")
             st.progress(result['probability'])
-
+            st.caption('Previsões com probabilidade inferior a 50% são automaticamente classificadas como "Não Desastre".')
         with st.expander("Ver detalhes"):
-            st.write("Texto processado:", result['processed_text'])
+            st.write("Texto após pré-processamento (remoção de ruído, normalização):")
+            st.code(result['processed_text'])
     else:
         st.error("Por favor, digite um tweet para classificar.")
