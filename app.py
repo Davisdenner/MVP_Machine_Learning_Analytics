@@ -11,7 +11,7 @@ st.set_page_config(
     # Sidebar colapsada por padrão para priorizar conteúdo em telas menores (mobile-first)
     initial_sidebar_state="collapsed"
 )
-# ===================== CSS PERSONALIZADO =====================
+# ===================== CSS PERSONALIZADO =====================#
 st.markdown(
     """
     <style>   
@@ -146,17 +146,28 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.write("Digite um tweet para classificar se está relacionado a um desastre natural real ou não")
+st.write(
+    "Digite um tweet para classificar se o texto descreve um **evento real de emergência** "
+    "ou se utiliza linguagem relacionada a desastres fora de um contexto real."
+)
+
 st.caption("Dica: use o menu lateral para alterar configurações do modelo e ver detalhes do projeto.")
 
 with st.expander("O que este modelo faz e quando utilizar", expanded=False):
     st.markdown("""
     **O que o modelo faz**  
     Esta aplicação utiliza um modelo de Deep Learning baseado em redes neurais
-    recorrentes (LSTM) para classificar tweets de acordo com a presença de
-    **eventos reais de desastre natural**, analisando o contexto do texto
-    e não apenas palavras-chave isoladas.
-
+    recorrentes (**LSTM**) para classificar tweets de acordo com a presença de
+    **eventos reais de desastre natural**, analisando o **contexto semântico**
+    do texto e não apenas palavras-chave isoladas.
+    
+    **Suporte a múltiplos idiomas**  
+    O modelo foi **treinado originalmente em inglês**. Para permitir o uso da
+    aplicação por usuários que escrevem em **português**, foi implementada uma
+    etapa automática de **detecção e tradução do texto para o inglês** antes
+    da inferência. Esse pré-processamento garante compatibilidade com o modelo treinado,
+    mantendo a coerência semântica da mensagem original.
+    
     **Contexto de uso**  
     O modelo pode ser utilizado para:
     - Monitoramento de redes sociais em tempo real

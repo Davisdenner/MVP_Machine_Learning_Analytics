@@ -1,9 +1,10 @@
-
 import pickle
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from preprocess import preprocess_text
+# Biblioteca de tradução
+from deep_translator import GoogleTranslator
 
 # constantes
 MAX_LEN = 100  # mesmo valor usado no treinamento
@@ -30,19 +31,37 @@ def predict_tweet(text, tokenizer=None):
     #se o tokenizer não for fornecido, tenta carregá-lo
     if tokenizer is None:
         tokenizer = load_tokenizer()
-    #pré-processando o texto
-    processed_text = preprocess_text(text)
-    #convertendo para sequência
+
+    # Traduzir de português para inglês
+    translator = GoogleTranslator(source='pt', target='en')
+
+    try:
+        # Detectar se é português e traduzir
+        text_en = translator.translate(text)
+        print(f"Texto original (PT): {text}")
+        print(f"Texto traduzido (EN): {text_en}")
+    except:
+        # Se falhar, usa o texto original
+        text_en = text
+
+    # Pré-processamento do texto TRADUZIDO
+    processed_text = preprocess_text(text_en)
+
+    # Convertendo para sequência
     sequence = tokenizer.texts_to_sequences([processed_text])
-    #aplicando padding
+
+    # Aplicando padding
     padded = pad_sequences(sequence, maxlen=MAX_LEN)
-    #fazendo predição
+
+    # Fazendo predição
     prediction = model.predict(padded, verbose=0)[0][0]
-    #determinando a classe
+
+    # Determinando a classe
     is_disaster = bool(prediction > 0.5)
 
     return {
-        'text': text,
+        'text': text,  # Texto original em português
+        'text_translated': text_en,  # Texto traduzido
         'processed_text': processed_text,
         'is_disaster': is_disaster,
         'probability': float(prediction),
