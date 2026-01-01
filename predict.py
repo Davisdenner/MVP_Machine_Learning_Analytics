@@ -26,12 +26,14 @@ def load_tokenizer():
         print(f"Erro ao carregar tokenizer: {e}")
         raise
 
-def predict_tweet(text, tokenizer=None):
+def predict_tweet(text, tokenizer=None, translated_text=None):
     #se o tokenizer não for fornecido, tenta carregá-lo
     if tokenizer is None:
         tokenizer = load_tokenizer()
+    #usar texto traduzido se fornecido, caso contrário usa o original
+    text_to_process = translated_text if translated_text else text
     #pré-processando o texto
-    processed_text = preprocess_text(text)
+    processed_text = preprocess_text(text_to_process)
     #convertendo para sequência
     sequence = tokenizer.texts_to_sequences([processed_text])
     #aplicando padding
@@ -43,6 +45,7 @@ def predict_tweet(text, tokenizer=None):
 
     return {
         'text': text,
+        'translated_text': translated_text if translated_text else text,
         'processed_text': processed_text,
         'is_disaster': is_disaster,
         'probability': float(prediction),

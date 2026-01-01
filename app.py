@@ -4,6 +4,7 @@ import os
 from tensorflow.keras.models import load_model
 import pickle
 from predict import predict_tweet
+from translator import get_translator, translate_to_english
 
 st.set_page_config(
     page_title="Classificador de Tweets de Desastre Naturais",
@@ -61,6 +62,37 @@ st.markdown(
         margin: 22px 0;
     }
     
+    /* ===== MEDIA QUERIES ===== */
+    @media (max-width: 768px) {
+        .main .block-container {
+            padding: 1rem 0.5rem;
+        }
+
+        div.stButton > button {
+            padding: 1rem 1.5rem;
+            min-height: 48px;
+        }
+
+        .language-warning {
+            padding: 0.875rem 1rem;
+        }
+
+        .stTextArea textarea {
+            min-height: 100px;
+        }
+    }
+
+    @media (min-width: 769px) {
+        [data-testid="stSidebar"] {
+            min-width: 320px;
+            max-width: 320px;
+        }
+
+        .stTextArea textarea {
+            min-height: 120px;
+        }
+    }
+    
     /* Footer alinhado e mais bonito */
     .sidebar-footer {
         text-align: center;
@@ -83,7 +115,7 @@ st.markdown(
 )
 
 st.title("Classificador de Tweets de Desastre Naturais")
-st.write("Digite um tweet para classificar se está relacionado a um desastre natural real ou não")
+st.write("Digite um tweet em **português ou inglês** para classificar se está relacionado a um desastre natural real ou não")
 
 with st.sidebar:
     st.header("Configurações do Modelo")
@@ -135,14 +167,25 @@ def carregar_tokenizer():
 
 #carregando tokenizer ao iniciar a aplicação
 tokenizer = carregar_tokenizer()
+translator = get_translator()
 
-
-tweet_input = st.text_area("Texto do Tweet:", height=100)
+tweet_input = st.text_area("Texto do Tweet:", height=100, placeholder="Ex: Incêndio devastador atinge região sul...")
 
 if st.button("Classificar Tweet"):
     if tweet_input:
         with st.spinner(f"Classificando com modelo {modelo_selecionado}..."):
-            result = predict_tweet(tweet_input, tokenizer)
+            #Traduzir o texto para inglês
+            translated_text, was_translated = translate_to_english(tweet_input, translator)
+
+            #Mostrar badge se foi traduzido
+            if was_translated:
+                st.markdown(
+                    f"<div class='translation-badge'> Texto traduzido automaticamente</div>",
+                    unsafe_allow_html=True
+                )
+
+            #Fazer a predição com o texto traduzido
+            result = predict_tweet(tweet_input, tokenizer, translated_text=translated_text)
 
         st.subheader("Resultado:")
 
@@ -154,6 +197,9 @@ if st.button("Classificar Tweet"):
             st.progress(result['probability'])
 
         with st.expander("Ver detalhes"):
-            st.write("Texto processado:", result['processed_text'])
+            if was_translated:
+                st.write("**Texto original (PT):**", tweet_input)
+                st.write("**Texto traduzido (EN):**", translated_text)
+            st.write("**Texto processado:**", result['processed_text'])
     else:
         st.error("Por favor, digite um tweet para classificar.")
