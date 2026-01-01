@@ -8,6 +8,7 @@ from predict import predict_tweet
 st.set_page_config(
     page_title="Classificador de Tweets de Desastre Naturais",
     layout="wide",
+    # Sidebar colapsada por padrão para priorizar conteúdo em telas menores (mobile-first)
     initial_sidebar_state="collapsed"
 )
 # ===================== CSS PERSONALIZADO =====================
@@ -61,51 +62,59 @@ st.markdown(
         margin: 22px 0;
     }
 
-/* ===== MOBILE (celulares pequenos e médios) ===== */
-@media (max-width: 480px) {
-    .main .block-container {
-        padding: 0.75rem 0.5rem;
+    /* ===== MEDIA QUERIES ===== */
+    @media (max-width: 769px) {
+        .main .block-container {
+            padding: 1rem 0.5rem;
+        }
     }
 
-    div.stButton > button {
-        padding: 0.9rem 1.2rem;
-        min-height: 48px; /* acessibilidade */
-        font-size: 1rem;
-    }
 
-    .stTextArea textarea {
-        min-height: 90px;
-        font-size: 0.95rem;
+    /* ===== MOBILE (celulares pequenos e médios) ===== */
+    @media (max-width: 480px) {
+        .main .block-container {
+            padding: 0.75rem 0.5rem;
+        }
+    
+        div.stButton > button {
+            padding: 0.9rem 1.2rem;
+            min-height: 48px; /* acessibilidade */
+            font-size: 1rem;
+        }
+    
+        .stTextArea textarea {
+            min-height: 90px;
+            font-size: 0.95rem;
+        }
     }
-}
-
-/* ===== MOBILE GRANDE / TABLET ===== */
-@media (min-width: 481px) and (max-width: 768px) {
-    .main .block-container {
-        padding: 1rem 0.75rem;
+    
+    /* ===== MOBILE GRANDE / TABLET ===== */
+    @media (min-width: 481px) and (max-width: 768px) {
+        .main .block-container {
+            padding: 1rem 0.75rem;
+        }
+    
+        div.stButton > button {
+            padding: 1rem 1.4rem;
+            min-height: 48px;
+        }
+    
+        .stTextArea textarea {
+            min-height: 110px;
+        }
     }
-
-    div.stButton > button {
-        padding: 1rem 1.4rem;
-        min-height: 48px;
+    
+    /* ===== DESKTOP ===== */
+    @media (min-width: 769px) {
+        [data-testid="stSidebar"] {
+            min-width: 320px;
+            max-width: 320px;
+        }
+    
+        .stTextArea textarea {
+            min-height: 120px;
+        }
     }
-
-    .stTextArea textarea {
-        min-height: 110px;
-    }
-}
-
-/* ===== DESKTOP ===== */
-@media (min-width: 769px) {
-    [data-testid="stSidebar"] {
-        min-width: 320px;
-        max-width: 320px;
-    }
-
-    .stTextArea textarea {
-        min-height: 120px;
-    }
-}
 
     /* Footer alinhado e mais bonito */
     .sidebar-footer {
@@ -130,6 +139,7 @@ st.markdown(
 
 st.title("Classificador de Tweets de Desastre Naturais")
 st.write("Digite um tweet para classificar se está relacionado a um desastre natural real ou não")
+st.caption("Dica: use o menu lateral para alterar configurações do modelo e ver detalhes do projeto.")
 
 with st.expander("O que este modelo faz e quando utilizar", expanded=False):
     st.markdown("""
