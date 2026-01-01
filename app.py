@@ -28,7 +28,7 @@ st.markdown(
         background-color: #105a8b;
         cursor: pointer;
     }
-    
+
     /* ===== SIDEBAR STYLE CORRIGIDO ===== */
     [data-testid="stSidebar"] {
         background: #f6f8fa;
@@ -37,7 +37,7 @@ st.markdown(
         min-width: 305px;
         max-width: 305px;
     }
-    
+
     /* Títulos */
     [data-testid="stSidebar"] h2, 
     [data-testid="stSidebar"] h3 {
@@ -46,21 +46,52 @@ st.markdown(
         margin-top: 10px;
         margin-bottom: 12px;
     }
-    
+
     /* Parágrafos */
     [data-testid="stSidebar"] p {
         font-size: 0.92rem;
         color: #444;
         line-height: 1.45;
     }
-    
+
     /* Divisor */
     .sidebar-divider {
         height: 1px;
         background: #d0d7de;
         margin: 22px 0;
     }
-    
+
+    /* ===== MEDIA QUERIES ===== */
+    @media (max-width: 768px) {
+        .main .block-container {
+            padding: 1rem 0.5rem;
+        }
+
+        div.stButton > button {
+            padding: 1rem 1.5rem;
+            min-height: 48px;
+        }
+
+        .language-warning {
+            padding: 0.875rem 1rem;
+        }
+
+        .stTextArea textarea {
+            min-height: 100px;
+        }
+    }
+
+    @media (min-width: 769px) {
+        [data-testid="stSidebar"] {
+            min-width: 320px;
+            max-width: 320px;
+        }
+
+        .stTextArea textarea {
+            min-height: 120px;
+        }
+    }
+
     /* Footer alinhado e mais bonito */
     .sidebar-footer {
         text-align: center;
@@ -68,13 +99,13 @@ st.markdown(
         color: #3a3a3a;
         margin-top: 30px;
     }
-    
+
     .sidebar-footer a {
         color: #2467c0;
         text-decoration: none;
         font-weight: 600;
     }
-    
+
     .sidebar-footer a:hover {
         text-decoration: underline;
     }
