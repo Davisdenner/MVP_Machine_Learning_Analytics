@@ -1,7 +1,6 @@
 #(versão atualizada para TensorFlow 2.20)
 import streamlit as st
 import os
-from tensorflow.keras.models import load_model
 import pickle
 from predict import predict_tweet
 
@@ -151,23 +150,72 @@ st.write(
     "ou se utiliza linguagem relacionada a desastres fora de um contexto real."
 )
 
-st.caption("Dica: use o menu lateral para alterar configurações do modelo e ver detalhes do projeto.")
+with st.expander("**Entendendo as Técnicas: TF-IDF e N-gramas**", expanded=False):
+    st.markdown("""
+    ### **O que é TF-IDF?**
+
+    **TF-IDF** significa **Term Frequency-Inverse Document Frequency** (Frequência do Termo - Frequência Inversa do Documento).
+
+    **Em termos simples**: É uma técnica que mede **quão importante** uma palavra é em um texto específico, comparando com todos os outros textos.
+
+    **Como funciona:**
+    - **TF (Term Frequency)**: Conta quantas vezes uma palavra aparece no texto
+    - **IDF (Inverse Document Frequency)**: Verifica se a palavra é rara ou comum em todos os textos
+    - **Resultado**: Palavras **raras mas frequentes** no texto atual ganham **pontuação alta**
+
+    **Exemplo prático:**
+    - Palavra "terremoto" em um tweet sobre desastre = **ALTA pontuação** (importante e específica)
+    - Palavra "o", "de", "para" = **BAIXA pontuação** (muito comum, pouco informativa)
+
+    ### **O que são N-gramas?**
+
+    **N-gramas** são **sequências de palavras** que o modelo analisa juntas, não apenas palavras isoladas.
+
+    **Tipos usados no projeto:**
+    - **1-grama (unigrama)**: palavra isolada → *"incêndio"*
+    - **2-grama (bigrama)**: duas palavras juntas → *"incêndio florestal"*  
+    - **3-grama (trigrama)**: três palavras juntas → *"incêndio florestal descontrolado"*
+
+    **Por que isso é importante:**
+    - **Contexto**: "Burning down" (desastre) vs "burning calories" (exercício)
+    - **Precisão**: "Emergency evacuation" é muito mais específico que apenas "emergency"
+    - **Semântica**: Captura o **significado real** da frase, não só palavras soltas
+
+    ### **Por que TF-IDF + N-gramas é eficiente?**
+
+     **Rápido**: Processamento muito mais veloz que Deep Learning  
+    **Eficaz**: Captura padrões textuais importantes  
+    **Interpretável**: Podemos ver exatamente quais palavras/frases influenciam a decisão  
+    **Menos recursos**: Não precisa de GPU ou grandes quantidades de memória  
+    **Produção**: Ideal para aplicações reais que precisam de respostas rápidas  
+
+    ###  **Exemplo no seu Tweet:**
+
+    **Tweet**: *"Terremoto devastador atinge a cidade"*
+
+    **O modelo analisa:**
+    - **1-gramas**: "terremoto" (alta pontuação), "devastador" (alta), "atinge" (média), "cidade" (média)
+    - **2-gramas**: "terremoto devastador" (altíssima pontuação - muito específico!)
+    - **3-gramas**: "terremoto devastador atinge" (contexto completo de emergência)
+
+    **Resultado**: Classificação **"Desastre"** com alta confiança! 
+    """)
 
 with st.expander("O que este modelo faz e quando utilizar", expanded=False):
     st.markdown("""
     **O que o modelo faz**  
-    Esta aplicação utiliza um modelo de Deep Learning baseado em redes neurais
-    recorrentes (**LSTM**) para classificar tweets de acordo com a presença de
-    **eventos reais de desastre natural**, analisando o **contexto semântico**
-    do texto e não apenas palavras-chave isoladas.
-    
+    Esta aplicação utiliza um modelo de Machine Learning baseado em 
+    **TF-IDF (Term Frequency-Inverse Document Frequency)** e **Regressão Logística** 
+    para classificar tweets de acordo com a presença de **eventos reais de desastre natural**, 
+    analisando a **importância estatística** das palavras e **n-gramas** no texto.
+
     **Suporte a múltiplos idiomas**  
     O modelo foi **treinado originalmente em inglês**. Para permitir o uso da
     aplicação por usuários que escrevem em **português**, foi implementada uma
     etapa automática de **detecção e tradução do texto para o inglês** antes
     da inferência. Esse pré-processamento garante compatibilidade com o modelo treinado,
     mantendo a coerência semântica da mensagem original.
-    
+
     **Contexto de uso**  
     O modelo pode ser utilizado para:
     - Monitoramento de redes sociais em tempo real
@@ -198,10 +246,10 @@ with st.expander("Desempenho do Modelo", expanded=False):
     st.markdown("""
     As métricas abaixo foram obtidas a partir de um **conjunto de validação separado**.
 
-    - **Acurácia**: 82%  
-    - **Precisão (Desastre)**: 79%  
-    - **Recall (Desastre)**: 85%  
-    - **F1-score**: 82%  
+    - **Acurácia**: 85%  
+    - **Precisão (Desastre)**: 82%  
+    - **Recall (Desastre)**: 87%  
+    - **F1-score**: 84%  
 
     **Interpretação das métricas**  
     - **Recall** indica a capacidade do modelo de identificar corretamente
@@ -209,8 +257,8 @@ with st.expander("Desempenho do Modelo", expanded=False):
     - **F1-score** representa o equilíbrio entre **Precisão** e **Recall**,
       sendo especialmente relevante em cenários com classes desbalanceadas.
 
-    > O recall da classe **Desastre** foi priorizado para reduzir o risco de
-    falsos negativos em situações críticas.
+    > O modelo TF-IDF apresenta excelente performance para este tipo de classificação
+    textual, aproveitando padrões de frequência de palavras e n-gramas.
     """)
 
 with st.expander("Limitações do Modelo", expanded=False):
@@ -227,77 +275,124 @@ with st.expander("Limitações do Modelo", expanded=False):
     desafios reais encontrados em aplicações de NLP em produção.
     """)
 
-
 with st.sidebar:
-    st.header("Configurações do Modelo")
-    modelo_selecionado = st.sidebar.selectbox(
-        "Selecione o modelo:",
-        ["LSTM_Simples", "LSTM_Bidirecional"]
-    )
-
-    st.markdown("<div class='sidebar-divider'></div>", unsafe_allow_html=True)
-
     st.header("Sobre o Projeto")
-    st.write(
-        "Esta aplicação utiliza um modelo de Deep Learning para classificar "
-        "tweets relacionados a desastres naturais."
-    )
-    #st.sidebar.write("Desenvolvido como parte do MVP em Machine Learning & Analytics (PUC-RIO).")
+
+    st.markdown("""
+    **Contexto Acadêmico:**
+    Desenvolvido para o MVP em Machine Learning & Analytics da PUC-Rio.
+
+    **Objetivo:**
+    Classificar tweets relacionados a desastres naturais usando NLP.
+
+    **Diferencial:**
+    Comparação empírica entre Deep Learning e métodos tradicionais de ML, demonstrando que TF-IDF pode superar redes neurais em problemas específicos.
+    """)
 
     st.markdown("<div class='sidebar-divider'></div>", unsafe_allow_html=True)
 
+    st.header("Informações do Modelo")
+
+    # Status do modelo atual
+    st.success("**Modelo Ativo:** TF-IDF + Regressão Logística")
+
+    st.header("Performance vs. Alternativas")
+
+    # Comparação visual
+    comparison_data = {
+        "TF-IDF + LogReg": {"acc": 85, "speed": "< 1s", "resources": "Baixo"},
+        "LSTM Bidirecional": {"acc": 82, "speed": "~5s", "resources": "Alto"},
+        "LSTM Simples": {"acc": 80, "speed": "~3s", "resources": "Médio"}
+    }
+
+    for model, metrics in comparison_data.items():
+        if model == "TF-IDF + LogReg":
+            st.success(f"**{model}**")
+            st.write(
+                f" Acurácia: {metrics['acc']}% |  Velocidade: {metrics['speed']} | Recursos: {metrics['resources']}")
+        else:
+            st.info(f"**{model}**")
+            st.write(
+                f"Acurácia: {metrics['acc']}% |  Velocidade: {metrics['speed']} | Recursos: {metrics['resources']}")
+
+    st.markdown("<div class='sidebar-divider'></div>", unsafe_allow_html=True)
+
+    st.header("Tecnologias Utilizadas")
+
+    # Badges das tecnologias principais
+    tech_badges = [
+        ("Python", "🐍"),
+        ("scikit-learn", "📊"),
+        ("NLTK", "📝"),
+        ("Streamlit", "⚡"),
+        ("TF-IDF", "🔤"),
+        ("Deep Translator", "🌐")
+    ]
+
+    for tech, emoji in tech_badges:
+        st.markdown(f"{emoji} **{tech}**")
+
+    st.markdown("<div class='sidebar-divider'></div>", unsafe_allow_html=True)
+
+    # Footer com informações do desenvolvedor
     st.markdown(
         """
-        <p class='sidebar-footer'>
-        Desenvolvido por: <strong>Davis Denner</strong><br>
-        <a href="https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0" target="_blank">LinkedIn</a><br>
-        <a href="https://github.com/Davisdenner" target="_blank">GitHub</a>
-        </p>
+        <div class='sidebar-footer'>
+        <h4>Desenvolvedor</h4>
+        <strong>Davis Denner Costa Silva</strong><br>
+        Machine Learning & Analytics - PUC-Rio<br><br>
+        <a href="https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0" target="_blank">
+        LinkedIn</a> | 
+        <a href="https://github.com/Davisdenner" target="_blank">
+        GitHub</a>
+        <br><br>
+        <small> <em>Demonstrando que nem sempre "mais complexo" significa "melhor".</em></small>
+        </div>
         """,
         unsafe_allow_html=True
     )
 # ===================== FUNÇÕES PARA CARREGAR MODELO E TOKENIZER =====================#
 @st.cache_resource
-def carregar_modelo(nome_modelo):
-    caminho_modelo = f"models/{nome_modelo}_best_model.keras"
-    if os.path.exists(caminho_modelo):
-        return load_model(caminho_modelo)
-    else:
-        st.error(f"Modelo {caminho_modelo} não encontrado!")
-        return None
+def carregar_modelos_tfidf():
+    try:
+        with open('models/tfidf_vectorizer.pickle', 'rb') as f:
+            vectorizer = pickle.load(f)
+        with open('models/lr_model.pickle', 'rb') as f:
+            model = pickle.load(f)
+        return vectorizer, model
+    except Exception as e:
+        st.error(f"Erro ao carregar modelos TF-IDF: {e}")
+        return None, None
 
-@st.cache_resource
-def carregar_tokenizer():
-    caminho_tokenizer = "models/tokenizer.pickle"
-    if os.path.exists(caminho_tokenizer):
-        with open(caminho_tokenizer, 'rb') as handle:
-            return pickle.load(handle)
-    else:
-        st.error("Arquivo tokenizer.pickle não encontrado! Verifique se ele está na pasta models/")
-        return None
-
-#carregando tokenizer ao iniciar a aplicação
-tokenizer = carregar_tokenizer()
-
+# Carregando modelos TF-IDF ao iniciar a aplicação
+vectorizer, model = carregar_modelos_tfidf()
 
 tweet_input = st.text_area("Texto do Tweet:", height=100)
 
 if st.button("Classificar Tweet"):
     if tweet_input:
-        with st.spinner(f"Classificando com modelo {modelo_selecionado}..."):
-            result = predict_tweet(tweet_input, tokenizer)
+        if vectorizer is not None and model is not None:
+            with st.spinner("Classificando com modelo TF-IDF..."):
+                result = predict_tweet(tweet_input, vectorizer, model)
 
-        st.subheader("Resultado:")
+            st.subheader("Resultado:")
 
-        col1, col2 = st.columns(2)
-        with col1:
-            st.info(f"Classificação: {result['class']}")
-        with col2:
-            st.info(f"Probabilidade: {result['probability']:.2%}")
-            st.progress(result['probability'])
-            st.caption('Probabilidades inferiores a 50% são automaticamente classificadas como "Não Desastre".')
-        with st.expander("Ver detalhes"):
-            st.write("Texto após pré-processamento (remoção de ruído, normalização):")
-            st.code(result['processed_text'])
+            col1, col2 = st.columns(2)
+            with col1:
+                st.info(f"Classificação: {result['class']}")
+            with col2:
+                st.info(f"Probabilidade: {result['probability']:.2%}")
+                st.progress(result['probability'])
+                st.caption('Probabilidades inferiores a 50% são automaticamente classificadas como "Não Desastre".')
+            with st.expander("Ver detalhes"):
+                st.write("**Texto original:**")
+                st.code(result['text'])
+                if result['text_translated'] != result['text']:
+                    st.write("**Texto traduzido:**")
+                    st.code(result['text_translated'])
+                st.write("**Texto após pré-processamento:**")
+                st.code(result['processed_text'])
+        else:
+            st.error("Modelos TF-IDF não puderam ser carregados. Verifique se os arquivos estão na pasta models/")
     else:
         st.error("Por favor, digite um tweet para classificar.")
