@@ -27,7 +27,6 @@ TOKENIZER_PATH = os.path.join(MODEL_DIR, 'tokenizer.pickle')
 
 os.makedirs(MODEL_DIR, exist_ok=True)
 
-
 def load_data():
     print(" Carregando dados...")
     df = pd.read_csv(DATA_FILE)
