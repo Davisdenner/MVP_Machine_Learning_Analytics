@@ -69,7 +69,6 @@ def predict_tweet(text, vectorizer=None, model=None, translate=True):
 
 
 def test_predictions():
-    """Testa com exemplos variados"""
     vectorizer, model = load_tfidf_model()
 
     test_cases = [
