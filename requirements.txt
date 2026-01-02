@@ -18,3 +18,4 @@ pillow>=10.0.0
 typing-extensions>=4.10.0
 absl-py>=1.0.0
 deep-translator==1.11.4
+scikit-learn>=1.4.0
