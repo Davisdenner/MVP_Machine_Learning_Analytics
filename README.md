@@ -13,8 +13,8 @@ O projeto implementa uma abordagem híbrida, comparando **Deep Learning** (LSTM)
 
 Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytics** da **PUC-Rio**, demonstrando a aplicação prática de técnicas de NLP para problemas reais de classificação de texto.
 
-**Desenvolvido por**: Davis Denner Costa Silva
-**LinkedIn**: [davis-denner-costa-silva](https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0)  
+**Desenvolvido por**: Davis Denner Costa Silva,
+**LinkedIn**: [davis-denner-costa-silva](https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0)  ,
 **GitHub**: [Davisdenner](https://github.com/Davisdenner)
 
 ## Principais Características
@@ -63,6 +63,7 @@ Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytic
 **Bibliotecas Principais**: scikit-learn, NLTK, deep-translator, streamlit, tensorflow, pandas, numpy
 
 </div>
+
 
 
 
