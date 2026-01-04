@@ -9,6 +9,17 @@ Este projeto consiste em um sistema completo de classificação de tweets relaci
 
 O projeto implementa uma abordagem híbrida, comparando **Deep Learning** (LSTM) com **métodos tradicionais de ML** (TF-IDF + Regressão Logística), demonstrando que para este tipo de problema, a **vectorização TF-IDF** com **n-gramas** oferece excelente performance com menor complexidade computacional.
 
+## Sobre o Projeto
+Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytics** da **PUC-Rio**, demonstrando a aplicação prática de técnicas de NLP para problemas reais de classificação de texto.
+
+**Desenvolvido por**: Davis Denner Costa Silva
+
+**LinkedIn**: [davis-denner-costa-silva](https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0)
+
+**GitHub**: [Davisdenner](https://github.com/Davisdenner)
+
+**Deploy**: [Interface Streamlit](https://classificador-davis-denner-01.streamlit.app/)
+
 ## Abordagem Principal: TF-IDF + Regressão Logística
 
 O modelo final utiliza:
@@ -16,65 +27,6 @@ O modelo final utiliza:
 - **Regressão Logística** com balanceamento de classes para classificação
 - **Pré-processamento inteligente** preservando palavras importantes para contexto de desastres
 - **Tradução automática** (PT para EN) para suporte multilíngue
-
-## **Entendendo as Técnicas Utilizadas**
-
-### **O que é TF-IDF?**
-
-**TF-IDF** significa **Term Frequency-Inverse Document Frequency** (Frequência do Termo - Frequência Inversa do Documento).
-
-**Em termos simples**: É uma técnica que mede **quão importante** uma palavra é em um texto específico, comparando com todos os outros textos.
-
-**Como funciona:**
-- **TF (Term Frequency)**: Conta quantas vezes uma palavra aparece no texto
-- **IDF (Inverse Document Frequency)**: Verifica se a palavra é rara ou comum em todos os textos
-- **Resultado**: Palavras **raras mas frequentes** no texto atual ganham **pontuação alta**
-
-**Exemplo prático:**
-- Palavra "terremoto" em um tweet sobre desastre = **ALTA pontuação** (importante e específica)
-- Palavra "o", "de", "para" = **BAIXA pontuação** (muito comum, pouco informativa)
-
-### **O que são N-gramas?**
-
-**N-gramas** são **sequências de palavras** que o modelo analisa juntas, não apenas palavras isoladas.
-
-**Tipos usados no projeto:**
-- **1-grama (unigrama)**: palavra isolada → *"incêndio"*
-- **2-grama (bigrama)**: duas palavras juntas → *"incêndio florestal"*  
-- **3-grama (trigrama)**: três palavras juntas → *"incêndio florestal descontrolado"*
-
-**Por que isso é importante:**
-- **Contexto**: "Burning down" (desastre) vs "burning calories" (exercício)
-- **Precisão**: "Emergency evacuation" é muito mais específico que apenas "emergency"
-- **Semântica**: Captura o **significado real** da frase, não só palavras soltas
-
-### **Por que TF-IDF + N-gramas é Superior?**
-
-| Aspecto | TF-IDF + N-gramas | Deep Learning |
-|---------|-------------------|---------------|
-| **Velocidade** | Milissegundos | Segundos |
-| **Recursos** | CPU básica | GPU cara |
-| **Interpretabilidade** | Total transparência | "Caixa preta" |
-| **Precisão** | 85% (excelente) | 82% (bom) |
-| **Produção** | Pronto para uso real | Complexo |
-
-###  **Exemplo Prático de Funcionamento**
-
-**Tweet**: *"Terremoto devastador atinge a cidade"*
-
-**O modelo TF-IDF analisa:**
-- **1-gramas**: "terremoto" (alta pontuação), "devastador" (alta), "atinge" (média), "cidade" (média)
-- **2-gramas**: "terremoto devastador" (altíssima pontuação - muito específico!)
-- **3-gramas**: "terremoto devastador atinge" (contexto completo de emergência)
-
-**Resultado**: Classificação **"Desastre"** com alta confiança! 
-
-## Performance do Modelo
-
-- **Acurácia**: 85%
-- **Precisão (Desastre)**: 82%
-- **Recall (Desastre)**: 87%
-- **F1-score**: 84%
 
 ## Principais Características
 - **Dataset**: 7.613 tweets de treino e 3.263 de teste
@@ -97,7 +49,7 @@ O modelo final utiliza:
 2. **Vectorização**: TF-IDF com n-gramas para capturar contexto
 3. **Modelagem**: Regressão Logística com balanceamento de classes
 4. **Avaliação**: Métricas de classificação e análise de erros
-5. **Deploy**: Interface Streamlit para demonstração
+5. **Deploy**: [Interface Streamlit](https://lnkd.in/gSd2HpQb) para demonstração
 
 ## Insights do Projeto
 
@@ -105,17 +57,6 @@ O modelo final utiliza:
 - **N-gramas** são fundamentais para capturar contexto em textos curtos
 - **Tradução automática** preserva o significado para classificação
 - **Pré-processamento inteligente** melhora significativamente a performance
-
-## **Diferencial Técnico**
-
-Este projeto demonstra uma **escolha consciente de tecnologia**:
-
-**Análise Comparativa**: Testou múltiplas abordagens (TF-IDF vs Deep Learning)  
-**Decisão Fundamentada**: Escolheu a melhor solução para o problema específico  
-**Pensamento Produtivo**: Priorizou eficiência e interpretabilidade  
-**Visão de Negócio**: Considerou recursos computacionais e velocidade de resposta
-
-**Para Recrutadores**: Mostra maturidade técnica, capacidade analítica e visão prática para soluções de ML em produção.
 
 <div align="center">
 
@@ -133,11 +74,3 @@ Este projeto demonstra uma **escolha consciente de tecnologia**:
 **Bibliotecas Principais**: scikit-learn, NLTK, deep-translator, streamlit, tensorflow, pandas, numpy
 
 </div>
-
-## Sobre o Projeto
-
-Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytics** da **PUC-Rio**, demonstrando a aplicação prática de técnicas de NLP para problemas reais de classificação de texto.
-
-**Desenvolvido por**: Davis Denner Costa Silva  
-**LinkedIn**: [davis-denner-costa-silva](https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0)  
-**GitHub**: [Davisdenner](https://github.com/Davisdenner)
