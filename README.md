@@ -20,6 +20,14 @@ Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytic
 
 **Deploy**: [Interface Streamlit](https://classificador-davis-denner-01.streamlit.app/)
 
+## Principais Características
+- **Dataset**: 7.613 tweets de treino e 3.263 de teste
+- **Problema**: Classificação binária (desastre vs não-desastre)
+- **Modelos comparados**: TF-IDF + LogReg, LSTM simples e LSTM bidirecional
+- **Técnicas aplicadas**: Vectorização TF-IDF, pré-processamento de texto, balanceamento de classes
+- **Interface Web**: Aplicação Streamlit para demonstração interativa
+
+
 ## Abordagem Principal: TF-IDF + Regressão Logística
 
 O modelo final utiliza:
@@ -27,13 +35,6 @@ O modelo final utiliza:
 - **Regressão Logística** com balanceamento de classes para classificação
 - **Pré-processamento inteligente** preservando palavras importantes para contexto de desastres
 - **Tradução automática** (PT para EN) para suporte multilíngue
-
-## Principais Características
-- **Dataset**: 7.613 tweets de treino e 3.263 de teste
-- **Problema**: Classificação binária (desastre vs não-desastre)
-- **Modelos comparados**: TF-IDF + LogReg, LSTM simples e LSTM bidirecional
-- **Técnicas aplicadas**: Vectorização TF-IDF, pré-processamento de texto, balanceamento de classes
-- **Interface Web**: Aplicação Streamlit para demonstração interativa
 
 ## Funcionalidades
 
