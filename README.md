@@ -48,6 +48,18 @@ O modelo final utiliza:
 - **Tradução automática** preserva o significado para classificação
 - **Pré-processamento inteligente** melhora significativamente a performance
 
+## Sobre o Projeto
+Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytics** da **PUC-Rio**, demonstrando a aplicação prática de técnicas de NLP para problemas reais de classificação de texto.
+
+**Desenvolvido por**: Davis Denner Costa Silva
+
+**LinkedIn**: [davis-denner-costa-silva](https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0)
+
+**GitHub**: [Davisdenner](https://github.com/Davisdenner)
+
+**Deploy**: [Interface Streamlit](https://classificador-davis-denner-01.streamlit.app/)
+
+
 <div align="center">
 
 ## Tecnologias Utilizadas
@@ -65,13 +77,3 @@ O modelo final utiliza:
 
 </div>
 
-## Sobre o Projeto
-Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytics** da **PUC-Rio**, demonstrando a aplicação prática de técnicas de NLP para problemas reais de classificação de texto.
-
-**Desenvolvido por**: Davis Denner Costa Silva
-
-**LinkedIn**: [davis-denner-costa-silva](https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0)
-
-**GitHub**: [Davisdenner](https://github.com/Davisdenner)
-
-**Deploy**: [Interface Streamlit](https://classificador-davis-denner-01.streamlit.app/)
