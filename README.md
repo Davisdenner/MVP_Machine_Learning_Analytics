@@ -123,7 +123,6 @@ Este projeto demonstra uma **escolha consciente de tecnologia**:
 **Pensamento Produtivo**: Priorizou eficiência e interpretabilidade  
 **Visão de Negócio**: Considerou recursos computacionais e velocidade de resposta
 
-**Para Recrutadores**: Mostra maturidade técnica, capacidade analítica e visão prática para soluções de ML em produção.
 
 <div align="center">
 
@@ -141,3 +140,4 @@ Este projeto demonstra uma **escolha consciente de tecnologia**:
 **Bibliotecas Principais**: scikit-learn, NLTK, deep-translator, streamlit, tensorflow, pandas, numpy
 
 </div>
+
