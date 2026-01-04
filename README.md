@@ -17,66 +17,6 @@ Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytic
 **LinkedIn**: [davis-denner-costa-silva](https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0)  
 **GitHub**: [Davisdenner](https://github.com/Davisdenner)
 
-## Abordagem Principal: TF-IDF + Regressão Logística
-
-O modelo final utiliza:
-- **TF-IDF Vectorization** com n-gramas (1-3) para capturar padrões textuais
-- **Regressão Logística** com balanceamento de classes para classificação
-- **Pré-processamento inteligente** preservando palavras importantes para contexto de desastres
-- **Tradução automática** (PT para EN) para suporte multilíngue
-
-## **Entendendo as Técnicas Utilizadas**
-
-### **O que é TF-IDF?**
-
-**TF-IDF** significa **Term Frequency-Inverse Document Frequency** (Frequência do Termo - Frequência Inversa do Documento).
-
-**Em termos simples**: É uma técnica que mede **quão importante** uma palavra é em um texto específico, comparando com todos os outros textos.
-
-**Como funciona:**
-- **TF (Term Frequency)**: Conta quantas vezes uma palavra aparece no texto
-- **IDF (Inverse Document Frequency)**: Verifica se a palavra é rara ou comum em todos os textos
-- **Resultado**: Palavras **raras mas frequentes** no texto atual ganham **pontuação alta**
-
-**Exemplo prático:**
-- Palavra "terremoto" em um tweet sobre desastre = **ALTA pontuação** (importante e específica)
-- Palavra "o", "de", "para" = **BAIXA pontuação** (muito comum, pouco informativa)
-
-### **O que são N-gramas?**
-
-**N-gramas** são **sequências de palavras** que o modelo analisa juntas, não apenas palavras isoladas.
-
-**Tipos usados no projeto:**
-- **1-grama (unigrama)**: palavra isolada → *"incêndio"*
-- **2-grama (bigrama)**: duas palavras juntas → *"incêndio florestal"*  
-- **3-grama (trigrama)**: três palavras juntas → *"incêndio florestal descontrolado"*
-
-**Por que isso é importante:**
-- **Contexto**: "Burning down" (desastre) vs "burning calories" (exercício)
-- **Precisão**: "Emergency evacuation" é muito mais específico que apenas "emergency"
-- **Semântica**: Captura o **significado real** da frase, não só palavras soltas
-
-### **Por que TF-IDF + N-gramas é Superior?**
-
-| Aspecto | TF-IDF + N-gramas | Deep Learning |
-|---------|-------------------|---------------|
-| **Velocidade** | Milissegundos | Segundos |
-| **Recursos** | CPU básica | GPU cara |
-| **Interpretabilidade** | Total transparência | "Caixa preta" |
-| **Precisão** | 85% (excelente) | 82% (bom) |
-| **Produção** | Pronto para uso real | Complexo |
-
-###  **Exemplo Prático de Funcionamento**
-
-**Tweet**: *"Terremoto devastador atinge a cidade"*
-
-**O modelo TF-IDF analisa:**
-- **1-gramas**: "terremoto" (alta pontuação), "devastador" (alta), "atinge" (média), "cidade" (média)
-- **2-gramas**: "terremoto devastador" (altíssima pontuação - muito específico!)
-- **3-gramas**: "terremoto devastador atinge" (contexto completo de emergência)
-
-**Resultado**: Classificação **"Desastre"** com alta confiança! 
-
 ## Performance do Modelo
 
 - **Acurácia**: 85%
@@ -114,16 +54,6 @@ O modelo final utiliza:
 - **Tradução automática** preserva o significado para classificação
 - **Pré-processamento inteligente** melhora significativamente a performance
 
-## **Diferencial Técnico**
-
-Este projeto demonstra uma **escolha consciente de tecnologia**:
-
-**Análise Comparativa**: Testou múltiplas abordagens (TF-IDF vs Deep Learning)  
-**Decisão Fundamentada**: Escolheu a melhor solução para o problema específico  
-**Pensamento Produtivo**: Priorizou eficiência e interpretabilidade  
-**Visão de Negócio**: Considerou recursos computacionais e velocidade de resposta
-
-
 <div align="center">
 
 ## Tecnologias Utilizadas
@@ -140,4 +70,5 @@ Este projeto demonstra uma **escolha consciente de tecnologia**:
 **Bibliotecas Principais**: scikit-learn, NLTK, deep-translator, streamlit, tensorflow, pandas, numpy
 
 </div>
+
 
