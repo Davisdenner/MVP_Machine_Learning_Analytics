@@ -9,6 +9,14 @@ Este projeto consiste em um sistema completo de classificação de tweets relaci
 
 O projeto implementa uma abordagem híbrida, comparando **Deep Learning** (LSTM) com **métodos tradicionais de ML** (TF-IDF + Regressão Logística), demonstrando que para este tipo de problema, a **vectorização TF-IDF** com **n-gramas** oferece excelente performance com menor complexidade computacional.
 
+## Sobre o Projeto
+
+Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytics** da **PUC-Rio**, demonstrando a aplicação prática de técnicas de NLP para problemas reais de classificação de texto.
+
+**Desenvolvido por**: Davis Denner Costa Silva  
+**LinkedIn**: [davis-denner-costa-silva](https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0)  
+**GitHub**: [Davisdenner](https://github.com/Davisdenner)
+
 ## Abordagem Principal: TF-IDF + Regressão Logística
 
 O modelo final utiliza:
@@ -133,11 +141,3 @@ Este projeto demonstra uma **escolha consciente de tecnologia**:
 **Bibliotecas Principais**: scikit-learn, NLTK, deep-translator, streamlit, tensorflow, pandas, numpy
 
 </div>
-
-## Sobre o Projeto
-
-Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytics** da **PUC-Rio**, demonstrando a aplicação prática de técnicas de NLP para problemas reais de classificação de texto.
-
-**Desenvolvido por**: Davis Denner Costa Silva  
-**LinkedIn**: [davis-denner-costa-silva](https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0)  
-**GitHub**: [Davisdenner](https://github.com/Davisdenner)
