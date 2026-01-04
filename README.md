@@ -16,7 +16,6 @@ Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytic
 **Desenvolvido por**: Davis Denner Costa Silva
 **LinkedIn**: [davis-denner-costa-silva](https://www.linkedin.com/in/davis-denner-costa-silva-4536a51b0)  
 **GitHub**: [Davisdenner](https://github.com/Davisdenner)
-**Interface Streamlit**: [Interface Streamlit](https://lnkd.in/gSd2HpQb)
 
 ## Principais Características
 - **Dataset**: 7.613 tweets de treino e 3.263 de teste
@@ -39,7 +38,7 @@ Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytic
 2. **Vectorização**: TF-IDF com n-gramas para capturar contexto
 3. **Modelagem**: Regressão Logística com balanceamento de classes
 4. **Avaliação**: Métricas de classificação e análise de erros
-5. **Deploy**: Interface Streamlit para demonstração
+5. **Deploy**: [Interface Streamlit](https://lnkd.in/gSd2HpQb) para demonstração
 
 ## Insights do Projeto
 
@@ -64,6 +63,7 @@ Este projeto foi desenvolvido como parte do **MVP em Machine Learning & Analytic
 **Bibliotecas Principais**: scikit-learn, NLTK, deep-translator, streamlit, tensorflow, pandas, numpy
 
 </div>
+
 
 
 
