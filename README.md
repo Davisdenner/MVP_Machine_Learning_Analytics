@@ -49,7 +49,7 @@ O modelo final utiliza:
 2. **Vectorização**: TF-IDF com n-gramas para capturar contexto
 3. **Modelagem**: Regressão Logística com balanceamento de classes
 4. **Avaliação**: Métricas de classificação e análise de erros
-5. **Deploy**: [Interface Streamlit](https://lnkd.in/gSd2HpQb) para demonstração
+5. **Deploy**: [Interface Streamlit](https://classificador-davis-denner-01.streamlit.app/) para demonstração
 
 ## Insights do Projeto
 
